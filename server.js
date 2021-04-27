@@ -4,10 +4,10 @@ const app = express()
 let bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-const password = process.env.PASSWORD
-console.log(password)
-const user = process.env.USER
-console.log("process.env.USER",process.env.USER)
+//const password = process.env.PASSWORD
+//console.log(password)
+//const user = process.env.USER
+//console.log("process.env.USER",process.env.USER)
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://mlab110:mlab110@cluster0.hxbys.mongodb.net/whiteboard', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -46,6 +46,7 @@ require("./controllers/quiz-attempts-controller")(app)
 
 
 const port = process.env.PORT || 3001
-app.listen(port, function() {
-    console.log('Our app is running on port: ' + port);
-});
+//app.listen(port, function() {
+//    console.log('Our app is running on port: ' + port);
+//});
+app.listen(port)
