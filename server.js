@@ -1,6 +1,28 @@
-// TODO: review https://expressjs.com/
+const dotenv = require('dotenv').config()
 const express = require('express')
 const app = express()
+let bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+const password = process.env.PASSWORD
+console.log(password)
+const user = process.env.USER
+console.log("process.env.USER",process.env.USER)
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://mlab110:mlab110@cluster0.hxbys.mongodb.net/whiteboard', {useNewUrlParser: true, useUnifiedTopology: true});
+
+
+// const session = require('express-session')
+// app.use(session({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: true,
+//     // cookie: { secure: true }
+// }))
+//'' + `mongodb+srv://${user}:${password}@cluster0.4cre1.mongodb.net/whiteboard`,
+      // 'mongodb://localhost:27017/whiteboard',
+
 
 // configure CORS
 app.use(function (req, res, next) {
@@ -20,6 +42,10 @@ demos(app);
 
 require("./controllers/quizzes-controller")(app)
 require("./controllers/question-controller")(app)
+require("./controllers/quiz-attempts-controller")(app)
 
 
-app.listen(3001)
+const port = process.env.PORT || 3001
+app.listen(port, function() {
+    console.log('Our app is running on port: ' + port);
+});
